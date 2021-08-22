@@ -12,5 +12,7 @@
         }
 
         public DbSet<Company> company { get; set; }
+
+        public DbSet<CompanieDetails> CompanyDetails { get; set; }
     }
 }

@@ -9,7 +9,7 @@
         <h4 class="text-info"></h4>
     </div>
     <div class="col-6 text-right ">
-        <a asp-action="Create" class="btn btn-outline-warning rounded">Create Company</a>
+        <a asp-action="Create" class="btn btn-outline-dark rounded">Create Company</a>
     </div>
 </div>
 <br />
@@ -24,23 +24,32 @@
         foreach (var com in Model)
         {
             <div class="col-sm-4">
-                <div class=" w-80 rounded-left  align-items-start">
-
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 text-info">@com.CompanyName</h6>
+                <div class=" w-80 rounded-left  align-items-start rounded-3">
+                    <div class="w-100">
+                        <img src="/Image/CompanyLogo.svg" style="width:100px;height:100px;">
                     </div>
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 text-info">Bulstat: @com.Bulstat</h6>
+                    <div class="d-flex flex-column">
+                        <div class="p-1 w-100 justify-content-between">
+                            <h6 class="mb-1 text-Secondary">@com.CompanyName</h6>
+                        </div>
+                        <div class="p-1 w-100 justify-content-between">
+                            <h6 class="mb-1 text-Secondary">Bulstat: @com.Bulstat</h6>
+                        </div>
                     </div>
                     <div class="clearfix">
                         <a onclick="GetCompanyForEmployees('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
-                           class="btn btn-outline-info"><i class="fas fa-users"> Employees</i></a>
+                           class="btn btn-outline-dark"><i class="fas fa-users"> Employees</i></a>
                         <a onclick="GetCompanyForDepartment('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
-                           class="btn btn-outline-warning"><i class="fas fa-building"></i></a>
+                           class="btn btn-outline-dark"><i class="fas fa-building"> Departments</i></a>
+                        <hr />
+                        <a onclick="GetCompanyForDepartment('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
+                           class="btn btn-outline-info"><i class="fas fa-info-circle"> Contract Information</i></a>
+                        <hr />
                         <a onclick="GetCompanyToDelete('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
-                           class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></a>
+                           class="btn btn-outline-danger"><i class="far fa-trash-alt"> Delete</i></a>
                     </div>
                 </div>
+                <hr hidden/>
                 <br>
             </div>
 
