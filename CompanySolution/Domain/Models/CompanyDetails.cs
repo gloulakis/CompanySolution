@@ -17,6 +17,6 @@ namespace CompanySolution.Domain.Models
         [Required]
         public string EndDate { get; set; }
 
-        public Company CompanyId { get; set; }
+        public string CompanyId { get; set; }
     }
 }

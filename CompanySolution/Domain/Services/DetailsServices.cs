@@ -9,6 +9,8 @@
     {
         private readonly ApplicationDbContext db;
 
+        public CompanieDetails CompanieDetails { get; set; }
+
         public DetailsServices(ApplicationDbContext db)
         {
             this.db = db;

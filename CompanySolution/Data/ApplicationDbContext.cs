@@ -14,5 +14,7 @@
         public DbSet<Company> company { get; set; }
 
         public DbSet<CompanieDetails> CompanyDetails { get; set; }
+
+        public DbSet<CompanyImage> CompanyImages { get; set; }
     }
 }
