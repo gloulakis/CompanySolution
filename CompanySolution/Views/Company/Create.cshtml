@@ -1,0 +1,28 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Create Company";
+}
+
+
+<form asp-controller="Company" asp-action="CreateCompany" runat="server" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Company Name</span>
+        </div>
+        <input type="text" class="form-control" asp-for="CompanyName" aria-label="Job Title" aria-describedby="basic-addon1">
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Bulstat</span>
+        </div>
+        <input type="text" class="form-control" asp-for="Bulstat" aria-label="Job Position" aria-describedby="basic-addon1">
+        <span asp-validation-for="Bulstat" class="text-danger"></span>
+    </div>
+    <input class="btn btn-info" type="submit" value="Add" />
+</form>
+
+
+<br />
+<br />

@@ -1,0 +1,84 @@
+﻿@model List<CompanySolution.Domain.Models.Company>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<div class="form-row">
+    <div class="col-6">
+        <h4 class="text-info"></h4>
+    </div>
+    <div class="col-6 text-right ">
+        <a asp-action="Create" class="btn btn-outline-warning rounded">Create Company</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    @{
+        if (Model == null)
+        {
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Create Company</h5>
+            </div>
+        }
+        foreach (var com in Model)
+        {
+            <div class="col-sm-4">
+                <div class=" w-80 rounded-left  align-items-start">
+
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 text-info">@com.CompanyName</h6>
+                    </div>
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 text-info">Bulstat: @com.Bulstat</h6>
+                    </div>
+                    <div class="clearfix">
+                        <a onclick="GetCompanyForEmployees('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
+                           class="btn btn-outline-info"><i class="fas fa-users"> Employees</i></a>
+                        <a onclick="GetCompanyForDepartment('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
+                           class="btn btn-outline-warning"><i class="fas fa-building"></i></a>
+                        <a onclick="GetCompanyToDelete('@com.id','@com.CompanyName')" data-toggle="modal" data-target="#exampleModal" asp-action="/"
+                           class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></a>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+        }
+    }
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure - <br /> Delete item: <span id="CompanyName"></span>-<span id="CompanyId"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="DeleteCompany()" type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function GetCompanyToDelete(id, CompanyName) {
+        var $Company = $("#CompanyName");
+        var $id = $("#CompanyId");
+
+        $Company.html(CompanyName);
+        $id.html(id);
+    }
+
+    function DeleteCompany() {
+        var $id = $("#CompanyId").html();
+        window.location = "/Company/Delete/"+$id;
+    }
+</script>
