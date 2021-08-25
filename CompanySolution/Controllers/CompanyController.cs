@@ -3,22 +3,37 @@
     using Microsoft.AspNetCore.Mvc;
     using CompanySolution.Domain.Services;
     using CompanySolution.Domain.Models;
+    using System.Dynamic;
+    using System.Linq;
 
     public class CompanyController : Controller
     {
         private readonly ICompanyServices companyServices;
+        private readonly IDetailsServices detailsServices;
 
         public CompanyController(ICompanyServices companyServices)
         {
             this.companyServices = companyServices;
         }
 
+
+
+
+
         public IActionResult Company()
         {
-            var model = companyServices.GetAll();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.company = companyServices.GetAll();
+            mymodel.details = detailsServices.GetAllDetails().ToList();
 
-            return View(model);
+
+            return View(mymodel);
         }
+
+
+
+
+
 
         public IActionResult Create()
         {
@@ -39,6 +54,19 @@
             return RedirectToAction("Company");
         }
 
+        public IActionResult CreateDepartment(int id, CompanieDetails companieDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                detailsServices.Add(companieDetails);
+            }
+            else
+            {
+                return RedirectToAction("CreateDepartment");
+            }
+            return RedirectToAction("Company");
+        }
+
         public IActionResult Delete(int id)
         {
             if (ModelState.IsValid)
@@ -47,6 +75,8 @@
             }
             return RedirectToAction("Company");
         }
+
+
 
     }
 }

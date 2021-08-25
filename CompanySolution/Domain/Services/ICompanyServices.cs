@@ -16,5 +16,6 @@
         public void Delete(int id);
 
         public void Apply(int id);
+
     }
 }

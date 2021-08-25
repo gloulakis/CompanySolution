@@ -13,7 +13,7 @@ namespace CompanySolution.Domain.Models
         public string ImageName { get; set; }
 
 
-        public string Companyid { get; set; }
+       
 
     }
 }

@@ -9,40 +9,54 @@
     {
         private readonly ApplicationDbContext db;
 
-        public CompanieDetails CompanieDetails { get; set; }
-
-        public DetailsServices(ApplicationDbContext db)
-        {
-            this.db = db;
-        }
-
-        void IDetailsServices.Add(CompanieDetails details)
+        public void Add(CompanieDetails details)
         {
             db.CompanyDetails.Add(details);
             db.SaveChanges();
         }
 
-        void IDetailsServices.Apply(int id)
+        public IEnumerable<CompanieDetails> GetAlldetails()
         {
-            CompanieDetails details = this.GetById(id);
+            return db.CompanyDetails.ToList();
         }
 
-        public CompanieDetails GetById(int _id)
+        public void Edit(CompanieDetails details)
         {
-            return db.CompanyDetails.FirstOrDefault(D => D.DetailsId == _id);
+            var DetailsEdit = db.CompanyDetails.FirstOrDefault(d => d.DetailsId == details.DetailsId);
+            if (DetailsEdit != null)
+            {
+                DetailsEdit.ContractNumber = details.ContractNumber;
+                DetailsEdit.StartDate = details.StartDate;
+                DetailsEdit.EndDate = details.EndDate;
+                db.SaveChanges();
+            }
         }
 
-        void IDetailsServices.Delete(int id)
+        public IEnumerable<CompanieDetails> GetAllDetails()
+        {
+            return db.CompanyDetails.ToList();
+        }
+
+        public CompanieDetails GetById(int id)
+        {
+            return db.CompanyDetails.FirstOrDefault(D => D.DetailsId == id);
+        }
+
+        public CompanieDetails GetDetailsById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Delete(int id)
         {
             CompanieDetails det = this.GetById(id);
             db.CompanyDetails.Remove(det);
             db.SaveChanges();
         }
 
-
-        IEnumerable<CompanieDetails> IDetailsServices.GetAll()
+        public void Apply(int id)
         {
-            return db.CompanyDetails.ToList();
+            CompanieDetails details = GetById(id);
         }
     }
 }

@@ -20,18 +20,6 @@
             db.SaveChanges();
         }
 
-        public void Apply(int id)
-        {
-            Company company = this.GetById(id);
-        }
-
-        public void Delete(int id)
-        {
-            Company com = this.GetById(id);
-            db.company.Remove(com);
-            db.SaveChanges();
-        }
-
         public void Edit(Company company)
         {
             var ComEdit = db.company.FirstOrDefault(J => J.id == company.id);
@@ -48,9 +36,26 @@
             return db.company.ToList();
         }
 
+
         public Company GetById(int id)
         {
             return db.company.FirstOrDefault(J => J.id == id);
         }
+
+
+
+        public void Apply(int id)
+        {
+            Company company = this.GetById(id);
+        }
+
+        public void Delete(int id)
+        {
+            Company com = this.GetById(id);
+            db.company.Remove(com);
+            db.SaveChanges();
+        }
+
+
     }
 }
