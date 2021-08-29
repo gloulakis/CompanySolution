@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CompanySolution.Domain.Models
 {
-    public class CompanieDetails
+    public class CompanyDetails
     {
         [Key]
         public int DetailsId { get; set; }
@@ -17,7 +17,9 @@ namespace CompanySolution.Domain.Models
         [Required]
         public string EndDate { get; set; }
 
-       
+        public int CompanyId { get; set; }
+
+        public Company company { get; set; }
 
     }
 }

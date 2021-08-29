@@ -1,0 +1,26 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Company" asp-action="SaveEdit" method="post">
+    <div class="row align-bottom">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Company Name</span>
+            </div>
+            <input type="text" class="form-control" asp-for="CompanyName" aria-label="Job Title" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Bulstat</span>
+            </div>
+            <input type="text" class="form-control" asp-for="Bulstat" aria-label="Job Position" aria-describedby="basic-addon1">
+        </div>
+        </div>
+    <hr />
+    <input asp-for="id" hidden />
+    <input class="btn btn-primary" type="submit" value="Save" />
+</form>

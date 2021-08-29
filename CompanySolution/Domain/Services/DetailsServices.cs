@@ -9,20 +9,20 @@
     {
         private readonly ApplicationDbContext db;
 
-        public void Add(CompanieDetails details)
+        public DetailsServices(ApplicationDbContext db)
         {
-            db.CompanyDetails.Add(details);
+            this.db = db;
+        }
+
+        public void Add(CompanyDetails details)
+        {
+            db.DbCompanyDetails.Add(details);
             db.SaveChanges();
         }
 
-        public IEnumerable<CompanieDetails> GetAlldetails()
+        public void Edit(CompanyDetails details)
         {
-            return db.CompanyDetails.ToList();
-        }
-
-        public void Edit(CompanieDetails details)
-        {
-            var DetailsEdit = db.CompanyDetails.FirstOrDefault(d => d.DetailsId == details.DetailsId);
+            var DetailsEdit = db.DbCompanyDetails.FirstOrDefault(d => d.DetailsId == details.DetailsId);
             if (DetailsEdit != null)
             {
                 DetailsEdit.ContractNumber = details.ContractNumber;
@@ -32,31 +32,53 @@
             }
         }
 
-        public IEnumerable<CompanieDetails> GetAllDetails()
+        public void CompanyDetails(CompanyDetails details)
         {
-            return db.CompanyDetails.ToList();
+            var Details = db.DbCompanyDetails.FirstOrDefault(d => d.CompanyId == details.CompanyId);
+            if (Details != null)
+            {
+                Details.CompanyId = details.CompanyId;
+                Details.ContractNumber = details.ContractNumber;
+                Details.EndDate = details.EndDate;
+                Details.StartDate = details.StartDate;
+                Details.EndDate = details.EndDate;
+                db.SaveChanges();
+            }
         }
 
-        public CompanieDetails GetById(int id)
+
+
+        public IEnumerable<CompanyDetails> GetDetails(int id)
         {
-            return db.CompanyDetails.FirstOrDefault(D => D.DetailsId == id);
+            var details = db.DbCompanyDetails
+                .Where(d => d.CompanyId == id)
+                .ToList();
+            return details;
         }
 
-        public CompanieDetails GetDetailsById(int id)
+
+        public CompanyDetails GetDetailsById(int id)
         {
-            throw new System.NotImplementedException();
+            return db.DbCompanyDetails.FirstOrDefault(D => D.DetailsId == id);
         }
+
+        public CompanyDetails GetDetailsByCompanyId(int id)
+        {
+            return db.DbCompanyDetails.FirstOrDefault(D => D.CompanyId == id);
+        }
+
+
 
         public void Delete(int id)
         {
-            CompanieDetails det = this.GetById(id);
-            db.CompanyDetails.Remove(det);
+            CompanyDetails det = this.GetDetailsById(id);
+            db.DbCompanyDetails.Remove(det);
             db.SaveChanges();
         }
 
         public void Apply(int id)
         {
-            CompanieDetails details = GetById(id);
+            CompanyDetails details = GetDetailsById(id);
         }
     }
 }

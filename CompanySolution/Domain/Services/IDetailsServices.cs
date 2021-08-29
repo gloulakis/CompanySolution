@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using CompanySolution.Domain.Models;
-
-namespace CompanySolution.Domain.Services
+﻿namespace CompanySolution.Domain.Services
 {
+    using System.Collections.Generic;
+    using CompanySolution.Domain.Models;
+
     public interface IDetailsServices
     {
-        public void Add(CompanieDetails details);
+        public void Add(CompanyDetails details);
 
-        CompanieDetails GetDetailsById(int id);
+        CompanyDetails GetDetailsById(int id);
 
-        void Edit(CompanieDetails details);
+        CompanyDetails GetDetailsByCompanyId(int id);
 
-        public IEnumerable<CompanieDetails> GetAllDetails();
+        void Edit(CompanyDetails details);
+        
+        public IEnumerable<CompanyDetails> GetDetails(int id);
 
         public void Delete(int id);
 

@@ -6,7 +6,7 @@
     using CompanySolution.Domain.Models;
 
     public class CompanyServices : ICompanyServices
-    {
+    {                                 
         private readonly ApplicationDbContext db;
 
         public CompanyServices(ApplicationDbContext db)

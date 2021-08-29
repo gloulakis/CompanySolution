@@ -11,22 +11,17 @@
             : base(options)
         {
         }
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<CompanyDetails>()
+                .HasOne(p => p.company)
+                .WithMany(d => d.details)
+                .HasForeignKey(k => k.CompanyId);
+ 
+        }
         public DbSet<Company> company { get; set; }
 
-        public DbSet<CompanieDetails> CompanyDetails { get; set; }
-
-        public DbSet<CompanyImage> CompanyImages { get; set; }
-
-        public DbSet<Department> departments { get; set; }
-
-        public DbSet<Employee> employees { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Company>().ToTable("company");
-            modelBuilder.Entity<CompanieDetails>().ToTable("CompanyDetails");
-        }
+        public DbSet<CompanyDetails> DbCompanyDetails { get; set; }
 
     }
 }

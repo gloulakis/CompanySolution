@@ -14,5 +14,7 @@ namespace CompanySolution.Domain.Models
 
         [Required]
         public string Bulstat { get; set; }
+
+        public List<CompanyDetails> details { get; set; }
     }
 }

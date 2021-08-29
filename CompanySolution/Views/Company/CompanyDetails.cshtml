@@ -1,0 +1,27 @@
+﻿@model CompanyDetails
+@{
+    ViewData["Title"] = "Company Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Company" asp-action="/" method="post">
+    <div class="row align-bottom">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Contract</span>
+            </div>
+            <input type="text" class="form-control" asp-for="ContractNumber" aria-label="Job Title" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">ID</span>
+            </div>
+            <input type="text" class="form-control" asp-for="CompanyId" aria-label="Job Position" aria-describedby="basic-addon1">
+        </div>
+        </div>
+    <hr />
+    <input asp-for="DetailsId" hidden />
+    @{//<input class="btn btn-primary" type="submit" value="Save" /
+    }
+</form>
