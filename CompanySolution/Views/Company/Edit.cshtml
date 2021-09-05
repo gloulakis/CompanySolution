@@ -1,26 +1,41 @@
 ﻿@model Company
-@{
-    ViewData["Title"] = "Edit";
-}
 
 <h1>@ViewData["Title"]</h1>
 
-<form asp-controller="Company" asp-action="SaveEdit" method="post">
-    <div class="row align-bottom">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Company Name</span>
+<div class="col w-100 p-1 mb-2">
+    <div class=" p-1 w-100 rounded align-items-start border"
+         style="background-color: whitesmoke;">
+        <div class="d-flex flex-column" style="background-color: #354649; border-color: #6C7A89; color:whitesmoke">
+
+            <div class="p-1 w-100 d-flex justify-content-center">
+                <h6 class="mb-1 text-Secondary">Companies Information</h6>
             </div>
-            <input type="text" class="form-control" asp-for="CompanyName" aria-label="Job Title" aria-describedby="basic-addon1">
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Bulstat</span>
-            </div>
-            <input type="text" class="form-control" asp-for="Bulstat" aria-label="Job Position" aria-describedby="basic-addon1">
+        <hr />
+        <div class="p-3">
+            <form asp-controller="Company" asp-action="SaveEdit" method="post">
+                <div class="row align-bottom">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Company Name</span>
+                        </div>
+                        <input type="text" class="form-control" asp-for="CompanyName" aria-label="Job Title" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Bulstat</span>
+                        </div>
+                        <input type="text" class="form-control" asp-for="Bulstat" aria-label="Job Position" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <hr />
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input asp-for="id" hidden />
+                    <input class="btn btn-lg btn-outline-primary" type="submit" value="Save" />
+                   
+                </div>
+            </form>
         </div>
-        </div>
-    <hr />
-    <input asp-for="id" hidden />
-    <input class="btn btn-primary" type="submit" value="Save" />
-</form>
+       
+    </div>
+</div>

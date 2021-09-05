@@ -16,6 +16,7 @@
 
         public void Add(CompanyDetails details)
         {
+
             db.DbCompanyDetails.Add(details);
             db.SaveChanges();
         }
@@ -46,16 +47,15 @@
             }
         }
 
-
-
-        public IEnumerable<CompanyDetails> GetDetails(int id)
+        public IEnumerable<CompanyDetails> GetAll()
         {
-            var details = db.DbCompanyDetails
-                .Where(d => d.CompanyId == id)
-                .ToList();
-            return details;
+            return db.DbCompanyDetails.ToList();
         }
 
+        public IEnumerable<CompanyDetails> GetDetailsByComId(int id)
+        {
+            return GetAll().Where(C=>C.CompanyId == id).ToList();
+        }
 
         public CompanyDetails GetDetailsById(int id)
         {
@@ -66,8 +66,6 @@
         {
             return db.DbCompanyDetails.FirstOrDefault(D => D.CompanyId == id);
         }
-
-
 
         public void Delete(int id)
         {
@@ -80,5 +78,6 @@
         {
             CompanyDetails details = GetDetailsById(id);
         }
+
     }
 }

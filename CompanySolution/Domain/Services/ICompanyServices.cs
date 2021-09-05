@@ -5,7 +5,7 @@
 
     public interface ICompanyServices
     {
-        public void Add(Company company);
+        public void Add(string name, string bulstat);
 
         Company GetById(int id);
 
@@ -14,8 +14,5 @@
         public IEnumerable<Company> GetAll();
 
         public void Delete(int id);
-
-        public void Apply(int id);
-
     }
 }

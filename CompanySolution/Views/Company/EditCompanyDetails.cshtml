@@ -7,14 +7,9 @@
     <div class="col-6">
         <h1>@ViewData["Title"]</h1>
     </div>
-    
-    <div class="col-6 text-right ">
-        <a asp-action="EditDetails" class="btn btn-outline-dark rounded">Edit</a>
-    </div>
 </div>
 
-
-<form asp-controller="Company" asp-action="SaveDetails" method="post" class="row g-3">
+<form asp-controller="Company" asp-action="EditDetails" method="post" class="row g-3">
     <div class="col-md-6">
         <label class="form-label">Contract Number</label>
         <input type="text" asp-for="ContractNumber" class="form-control">
@@ -39,9 +34,7 @@
         <label class="form-label">End Date</label>
         <input type="text" asp-for="EndDate" class="form-control">
     </div>
-    <div class="col-md-6">
-        <label class="form-label">Edit</label>
-        <input type="submit" class="form-control">
-    </div>
+    <input asp-for="DetailsId" hidden />
+    <input class="btn btn-primary" type="submit" value="Save" />
 </form>
 

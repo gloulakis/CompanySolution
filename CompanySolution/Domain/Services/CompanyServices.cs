@@ -14,9 +14,9 @@
             this.db = db;
         }
 
-        public void Add(Company company)
+        public void Add (string companyName, string Bulstat)
         {
-            db.company.Add(company);
+            db.company.Add(new Company {CompanyName = companyName,Bulstat = Bulstat });
             db.SaveChanges();
         }
 
@@ -42,20 +42,11 @@
             return db.company.FirstOrDefault(J => J.id == id);
         }
 
-
-
-        public void Apply(int id)
-        {
-            Company company = this.GetById(id);
-        }
-
         public void Delete(int id)
         {
             Company com = this.GetById(id);
             db.company.Remove(com);
             db.SaveChanges();
         }
-
-
     }
 }

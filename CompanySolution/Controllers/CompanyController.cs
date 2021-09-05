@@ -4,7 +4,6 @@
     using CompanySolution.Domain.Services;
     using CompanySolution.Domain.Models;
     using CompanySolution.Data;
-    using Microsoft.EntityFrameworkCore;
 
     public class CompanyController : Controller
     {
@@ -23,14 +22,14 @@
         {
             var model = companyServices.GetAll();
             return View(model);
-
         }
 
-        public IActionResult CompanyDetails()
+
+        [HttpGet]
+        public IActionResult CompanyDetails(int id)
         {
-
-            return View();
-
+            var model = detailsServices.GetDetailsByCompanyId(id);
+            return View(model);
         }
 
         //---------------------------------------------
@@ -44,8 +43,15 @@
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult EditDetails(int id)
+        {
+            var model = detailsServices.GetDetailsByCompanyId(id);
+            return View(model);
+        }
 
-        [HttpPost]
+
+        [HttpGet]
         public IActionResult SaveEdit(Company company)
         {
             if (ModelState.IsValid)
@@ -55,37 +61,48 @@
             return RedirectToAction("Company");
         }
 
+        [HttpPost]
+        public IActionResult SaveDetails(CompanyDetails details)
+        {
+            if (ModelState.IsValid)
+            {
+                detailsServices.Edit(details);
+            }
+            else RedirectToAction("CompanyDetails");
+            return RedirectToAction("Company");
+        }
+
 
         //---------------------------------------------
 
-        [HttpPost("")]
-        public IActionResult CreateCompany(Company _company)
+        public IActionResult Create()
         {
-            if (ModelState.IsValid)
-            {
-                companyServices.Add(_company);
-            }
-            else
-            {
-                return RedirectToAction("Create");
-            }
-            return RedirectToAction("Company");
+            return View();
         }
 
 
-        public IActionResult CreateDepartment(int id, CompanyDetails company)
+        [HttpPost]
+        public IActionResult AddCompany(string CompanyName,string Bulstat)
         {
-            if (ModelState.IsValid)
-            {
-                detailsServices.Add(company);
-            }
-            else
-            {
-                return RedirectToAction("CreateDepartment");
-            }
+            companyServices.Add(CompanyName, Bulstat);
+
             return RedirectToAction("Company");
         }
 
+        //[HttpPost("")]
+        //public IActionResult AddDetails(CompanyDetails companyDetails,int id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        companyDetails.CompanyId = id;
+        //        detailsServices.Add(companyDetails);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Create");
+        //    }
+        //    return RedirectToAction("Company");
+        //}
 
         public IActionResult Delete(int id)
         {
