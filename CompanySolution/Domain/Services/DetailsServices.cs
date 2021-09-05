@@ -47,7 +47,21 @@
             }
         }
 
-     
+        public void Add(string CN, string A, string PC,string C, string SD, string ED
+            ,int CompanyId)
+        {
+            db.DbCompanyDetails.Add(new CompanyDetails {
+                ContractNumber = CN,
+                Address = A,
+                PostCode =PC,
+                City = C,
+                StartDate = SD,
+                EndDate = ED,
+                CompanyId= CompanyId
+            });
+            db.SaveChanges();
+        }
+
 
         public IEnumerable<CompanyDetails> GetDetailsByComId(int id)
         {

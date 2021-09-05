@@ -2,6 +2,56 @@
 @{
     ViewData["Title"] = "Contract Details";
 }
+<div class="p-1">
+    <button onclick="handleAdd()" class="btn btn-outline-secondary rounded button add-button-wrapper"> Add Contract </button>
+</div>
+<div class="container w-100 shadow rounded ">
+            <form class="row g-3 p-1" asp-controller="Company" asp-action="ContractDetails" method="post">
+                <div class="col-auto p-1">
+                    <input type="text" name="ContractName" class="form-control" placeholder="Company Name">
+                </div>
+                <div class="col-auto p-1">
+                    <input type="text" name="Address" class="form-control" placeholder="Address">
+                </div>
+                <div class="col-auto p-1">
+                    <input type="text" name="PostCode" class="form-control" placeholder="PostCode">
+                </div>
+
+                <div class="col-auto p-1">
+                    <input type="text" name="City" class="form-control" placeholder="City">
+                </div>
+
+                <div class="col-auto p-1">
+                    <input type="text" name="StartDate" class="form-control" placeholder="Start Date">
+                </div>
+
+                <div class="col-auto p-1">
+                    <input type="text" name="EndDate" class="form-control" placeholder="To Date">
+                </div>
+                @foreach (var test in Model)
+                {
+                    <div class="col-auto">
+                        <input type="number" name="CompanyId" value="@test.CompanyId" class="form-control" placeholder="Bulstat" hidden>
+                    </div>
+                }
+                <div class="col-auto p-1">
+                    <button type="submit" class="btn btn-outline-info rounded border border-info shadow-sm p-2 mb-3">Add</button>
+                </div>
+                <div class="col-auto p-1">
+                    <a onclick="cancelAdd()"
+                       class="btn btn-outline-danger rounded border border-danger shadow-sm p-2 mb-3">Cancel</a>
+                </div>
+            </form>
+</div>
+
+
+
+
+
+
+
+
+
 
 <div class="row d-flex justify-content-between p-1 bg-transparent text-dark">
 
@@ -49,3 +99,19 @@
     }
 </div>
 
+<script>function handleAdd() {
+        var $button = $(".add-button-wrapper");
+        var $form = $(".add-form-wrapper");
+
+        $button.addClass("invisible");
+        $form.removeClass("invisible");
+        $form("margin-top", "-2px");
+    }
+
+    function cancelAdd() {
+        var $button = $(".add-button-wrapper");
+        var $form = $(".add-form-wrapper");
+
+        $form.addClass("invisible");
+        $button.removeClass("invisible");
+    }</script>

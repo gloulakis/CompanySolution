@@ -5,7 +5,8 @@
 
     public interface IDetailsServices
     {
-        public void Add(CompanyDetails details);
+        public void Add(string CN, string A, string PC, string C, string SD, string ED
+            , int CompanyId);
 
         CompanyDetails GetDetailsById(int id);
 

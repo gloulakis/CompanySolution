@@ -89,20 +89,20 @@
             return RedirectToAction("Company");
         }
 
-        //[HttpPost("")]
-        //public IActionResult AddDetails(CompanyDetails companyDetails,int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        companyDetails.CompanyId = id;
-        //        detailsServices.Add(companyDetails);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Create");
-        //    }
-        //    return RedirectToAction("Company");
-        //}
+        [HttpPost]
+        public IActionResult ContractDetails(string ContractName, string Address,
+            string PostCode, string City, string StartDate, string EndDate
+            , int CompanyId)
+        {
+            if (ModelState.IsValid)
+            {
+                detailsServices.Add(ContractName, Address, PostCode, City,
+                StartDate, EndDate, CompanyId);
+            }
+           
+
+            return RedirectToAction("CompanyDetails");
+        }
 
         public IActionResult Delete(int id)
         {
