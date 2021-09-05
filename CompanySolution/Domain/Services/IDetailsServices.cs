@@ -14,6 +14,9 @@
         void Edit(CompanyDetails details);
 
         public IEnumerable<CompanyDetails> GetAll();
+
+        public IEnumerable<CompanyDetails> GetAllbyComId(int id);
+
         public IEnumerable<CompanyDetails> GetDetailsByComId(int id);
         public void Delete(int id);
 

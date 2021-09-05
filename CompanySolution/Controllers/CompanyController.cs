@@ -24,11 +24,10 @@
             return View(model);
         }
 
-
-        [HttpGet]
         public IActionResult CompanyDetails(int id)
         {
-            var model = detailsServices.GetDetailsByCompanyId(id);
+            //var model = detailsServices.GetDetailsByCompanyId(id);
+            var model = detailsServices.GetAllbyComId(id);
             return View(model);
         }
 
@@ -43,6 +42,7 @@
             return View(model);
         }
 
+
         [HttpGet]
         public IActionResult EditDetails(int id)
         {
@@ -51,7 +51,7 @@
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult SaveEdit(Company company)
         {
             if (ModelState.IsValid)

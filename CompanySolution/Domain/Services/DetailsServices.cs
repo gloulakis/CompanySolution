@@ -47,10 +47,7 @@
             }
         }
 
-        public IEnumerable<CompanyDetails> GetAll()
-        {
-            return db.DbCompanyDetails.ToList();
-        }
+     
 
         public IEnumerable<CompanyDetails> GetDetailsByComId(int id)
         {
@@ -79,5 +76,14 @@
             CompanyDetails details = GetDetailsById(id);
         }
 
+        public IEnumerable<CompanyDetails> GetAll()
+        {
+            return db.DbCompanyDetails.ToList();
+        }
+
+        public IEnumerable<CompanyDetails> GetAllbyComId(int id)
+        {
+            return db.DbCompanyDetails.Where(c => c.CompanyId == id).ToList();
+        }
     }
 }

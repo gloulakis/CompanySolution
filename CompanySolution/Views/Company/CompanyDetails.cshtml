@@ -1,47 +1,51 @@
-﻿@model CompanyDetails
+﻿@model List<CompanyDetails>
 @{
-    ViewData["Title"] = "Company Details";
+    ViewData["Title"] = "Contract Details";
 }
 
-<div class="form-row">
-    <div class="col-6">
-        <h1>@ViewData["Title"]</h1>
-    </div>
-    
-    <div class="col-6 text-right ">
-        <a asp-action="EditDetails" class="btn btn-outline-dark rounded">Edit</a>
-    </div>
+<div class="row d-flex justify-content-between p-1 bg-transparent text-dark">
+
+    @{
+        if (Model == null)
+        {
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Create Company</h5>
+            </div>
+        }
+        foreach (var com in Model)
+        {
+            <div class="col-sm-4 w-100 p-1 mb-2">
+                <div class=" p-1 w-100 rounded align-items-start border"
+                     style="background-color: whitesmoke;">
+                    <div class="d-flex flex-column" style="background-color: #354649; border-color: #6C7A89; color:whitesmoke">
+                        <div class="p-1 w-100 d-flex justify-content-center">
+                            <h6 class="mb-1 text-Secondary">@com.ContractNumber</h6>
+                        </div>
+                        <div class="p-1 w-100 d-flex justify-content-center">
+                            <h6 class="mb-1 text-Secondary">@com.EndDate</h6>
+                        </div>
+                        <div class="p-1 w-100 d-flex justify-content-center">
+                            <h6 class="mb-1 text-Secondary">@com.Address</h6>
+                        </div>
+                        <div class="p-1 w-100 d-flex justify-content-center">
+                            <h6 class="mb-1 text-Secondary">@com.City</h6>
+                        </div>
+                        <div class="p-1 w-100 d-flex justify-content-center">
+                            <h6 class="mb-1 text-Secondary">@com.PostCode</h6>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-around">
+                        <a onclick="EditCompany('')"
+                           class="btn btn-outline-warning rounded border border-warning  shadow-sm p-3 mb-5"><i class="far fa-edit"></i></a>
+
+                        <a onclick="GetCompany('','')" data-toggle="modal" data-target="#deleteModal" asp-action="/"
+                           class="btn btn-outline-danger rounded border border-danger  shadow-sm p-3 mb-5"><i class="far fa-trash-alt"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
 </div>
-
-
-<form asp-controller="Company" asp-action="SaveDetails" method="post" class="row g-3">
-    <div class="col-md-6">
-        <label class="form-label">Contract Number</label>
-        <input type="text" asp-for="ContractNumber" class="form-control">
-    </div>
-    <div class="col-md-6">
-        <label class="form-label">Address</label>
-        <input type="text" asp-for="Address" class="form-control">
-    </div>
-    <div class="col-12">
-        <label class="form-label">Zip</label>
-        <input type="text" asp-for="PostCode" class="form-control">
-    </div>
-    <div class="col-12">
-        <label class="form-label">City</label>
-        <input type="text" asp-for="City" class="form-control">
-    </div>
-    <div class="col-md-6">
-        <label class="form-label">Start Date</label>
-        <input type="text" asp-for="StartDate" class="form-control">
-    </div>
-    <div class="col-md-6">
-        <label class="form-label">End Date</label>
-        <input type="text" asp-for="EndDate" class="form-control">
-    </div>
-    <div class="col-md-6">
-        <label class="form-label">Edit</label>
-        <input type="submit" class="form-control">
-    </div>
-</form>
 
